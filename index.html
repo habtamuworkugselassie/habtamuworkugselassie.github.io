@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Habtamu Worku Gebreselassie</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #f9fafb;
+      color: #333;
+    }
+    header {
+      background: linear-gradient(135deg, #4e54c8, #8f94fb);
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+    }
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+    header p {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+    .btn-primary {
+      background: #ffffff;
+      color: #4e54c8;
+      padding: 12px 30px;
+      border-radius: 25px;
+      font-weight: 600;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .btn-primary:hover {
+      background: #f0f0f0;
+    }
+    section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h2 {
+      text-align: center;
+      font-size: 2.4rem;
+      color: #4e54c8;
+      margin-bottom: 20px;
+    }
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .info-box {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.05);
+    }
+    .info-box p {
+      margin: 8px 0;
+    }
+    .contact-links a {
+      color: #4e54c8;
+      font-weight: 600;
+      margin-right: 15px;
+      text-decoration: none;
+    }
+    .contact-links a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      background: #222;
+      color: #fff;
+      text-align: center;
+      padding: 30px 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Habtamu Worku Gebreselassie</h1>
+    <p>Software Engineer • Developer • Tech Enthusiast</p>
+    <button class="btn-primary" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">About Me</button>
+  </header>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>Hello! I am Habtamu Worku Gebreselassie from Addis Ababa, Ethiopia. I enjoy building projects, learning new technologies, and solving real-world problems through software development. Welcome to my portfolio!</p>
+  </section>
+
+  <section>
+    <h2>Contact & Links</h2>
+    <div class="info-grid">
+      <div class="info-box">
+        <p><strong>Location:</strong> Addis Ababa, Ethiopia</p>
+        <p><strong>Phone:</strong> (+251) 920 783 807</p>
+        <p><strong>Phone:</strong> (+251) 777 778 540</p>
+        <p><strong>Email:</strong> <a href="mailto:habtamuwgs2001@gmail.com">habtamuwgs2001@gmail.com</a></p>
+        <p><strong>Email:</strong> <a href="mailto:habtamu.worku.gselassie@gmail.com">habtamu.worku.gselassie@gmail.com</a></p>
+      </div>
+      <div class="info-box contact-links">
+        <p><strong>Connect with me:</strong></p>
+        <p>
+          <a href="https://www.linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
+          <a href="https://github.com/habtamuworkugselassie" target="_blank">GitHub</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Habtamu Worku Gebreselassie • All Rights Reserved
+  </footer>
+
+</body>
+</html>

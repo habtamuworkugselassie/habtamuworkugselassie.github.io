@@ -4,7 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Habtamu Worku Gebreselassie</title>
+  
+  <link rel="icon" type="image/jpg" href="icon.jpg">
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     html {
       scroll-behavior: smooth;
@@ -18,19 +22,53 @@
     header {
       background: linear-gradient(135deg, #4e54c8, #8f94fb);
       color: white;
-      text-align: center;
-      padding: 80px 20px;
+      padding: 60px 40px;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .profile-image-link {
+      display: inline-block;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .profile-image {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 5px solid white;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      object-fit: cover;
+      flex-shrink: 0;
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: block;
+    }
+    .profile-image:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    }
+    .header-content {
+      flex: 1;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 180px;
     }
     header h1 {
       font-size: 3rem;
       margin-bottom: 10px;
+      margin-top: 0;
     }
     header p {
       font-size: 1.2rem;
-      margin-bottom: 20px;
+      margin-bottom: 0;
     }
     nav {
-      margin-top: 30px;
+      margin-top: auto;
+      padding-top: 20px;
     }
     nav a {
       color: white;
@@ -54,6 +92,29 @@
       font-size: 2.4rem;
       color: #4e54c8;
       margin-bottom: 20px;
+    }
+    h2 i {
+      margin-right: 12px;
+      font-size: 2.2rem;
+    }
+    nav a i {
+      margin-right: 6px;
+    }
+    .info-box i, .contact-links i {
+      margin-right: 8px;
+      color: #4e54c8;
+    }
+    .experience-item .company i,
+    .experience-item .duration i {
+      margin-right: 8px;
+    }
+    .experience-item li i {
+      margin-right: 8px;
+      color: #4e54c8;
+    }
+    .portfolio-item h3 i {
+      margin-right: 10px;
+      color: #4e54c8;
     }
     .info-grid {
       display: grid;
@@ -84,11 +145,18 @@
     }
     .summary-box {
       background: white;
-      padding: 30px;
+      padding: 40px;
       border-radius: 12px;
       box-shadow: 0px 4px 10px rgba(0,0,0,0.05);
-      line-height: 1.8;
+      line-height: 1.9;
       font-size: 1.1rem;
+    }
+    .summary-box p {
+      margin-bottom: 20px;
+      color: #444;
+    }
+    .summary-box p:last-child {
+      margin-bottom: 0;
     }
     .portfolio-grid {
       display: grid;
@@ -497,8 +565,28 @@
       .info-grid {
         grid-template-columns: 1fr;
       }
+      header {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 20px;
+        gap: 25px;
+      }
+      .header-content {
+        text-align: center;
+      }
       header h1 {
         font-size: 2rem;
+      }
+      .profile-image {
+        width: 150px;
+        height: 150px;
+      }
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      nav a {
+        margin: 5px;
       }
     }
   </style>
@@ -506,26 +594,35 @@
 <body>
 
   <header>
-    <h1>Habtamu Worku Gebreselassie</h1>
-    <p>Addis Ababa, Ethiopia</p>
-    <nav>
-      <a href="#summary">Summary</a>
-      <a href="#skills">Skills</a>
-      <a href="#experience">Experience</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <a href="#" class="profile-image-link" onclick="event.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'});">
+      <img src="profile.jpg" alt="Habtamu Worku Gebreselassie" class="profile-image">
+    </a>
+    <div class="header-content">
+      <h1>Habtamu Worku Gebreselassie</h1>
+      <p><i class="fas fa-map-marker-alt"></i> Addis Ababa, Ethiopia</p>
+      <nav>
+        <a href="#summary"><i class="fas fa-user"></i> Summary</a>
+        <a href="#skills"><i class="fas fa-code"></i> Skills</a>
+        <a href="#experience"><i class="fas fa-briefcase"></i> Experience</a>
+        <a href="#portfolio"><i class="fas fa-folder-open"></i> Portfolio</a>
+        <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+      </nav>
+    </div>
   </header>
 
   <section id="summary">
-    <h2>Professional Summary</h2>
+    <h2><i class="fas fa-user-circle"></i> Professional Summary</h2>
     <div class="summary-box">
-      <p>A highly accomplished and results-driven Senior Software Engineer with over a decade of hands-on experience in designing, developing, and deploying robust, high-availability systems. Specializes in sophisticated backend architecture, full-stack development, and complex fintech integrations for global markets. An expert in Java (Spring Boot) and event-driven, microservices-based architectures, with a proven track record of building secure, scalable, and high-performance financial platforms. Demonstrates exceptional ability in leading development projects, mentoring engineering teams, and delivering innovative, end-to-end solutions for the financial services, telecommunications, and enterprise sectors.</p>
+      <p>Senior Software Engineer with over a decade of expertise in architecting, developing, and deploying enterprise-grade, high-availability systems. Specialized in sophisticated backend architecture, full-stack development, and complex fintech integrations serving global markets.</p>
+      
+      <p>Proficient in Java and Spring Boot ecosystems, with deep expertise in event-driven and microservices architectures. Proven track record of designing and implementing secure, scalable, high-performance financial platforms that process millions of transactions while maintaining exceptional reliability and compliance standards.</p>
+      
+      <p>Demonstrated leadership in guiding development initiatives, mentoring engineering teams, and delivering innovative end-to-end solutions across financial services, telecommunications, and enterprise sectors. Passionate about leveraging cutting-edge technologies to solve complex business challenges and drive organizational success.</p>
     </div>
   </section>
 
   <section id="skills">
-    <h2>Technical Skills</h2>
+    <h2><i class="fas fa-code"></i> Technical Skills</h2>
     <p class="skills-intro">This chart highlights key technologies where I possess deep expertise and extensive experience. My skills span across the entire development lifecycle, from backend architecture to cloud deployment. Use the filters below to explore specific categories of my technical abilities.</p>
     
     <div class="skills-chart">
@@ -747,11 +844,11 @@
   </section>
 
   <section id="experience">
-    <h2>Professional Experience</h2>
+    <h2><i class="fas fa-briefcase"></i> Professional Experience</h2>
     <div class="experience-item">
       <h3>Software Engineer III</h3>
-      <div class="company">Paga Fintech Ltd.</div>
-      <div class="duration">Nigeria & Ethiopia | Present</div>
+      <div class="company"><i class="fas fa-building"></i> Paga Fintech Ltd.</div>
+      <div class="duration"><i class="far fa-calendar-alt"></i> Nigeria & Ethiopia | Present</div>
       <ul>
         <li>Designed and implemented a robust Recurring Payment Engine to standardize and automate core financial processes, including money transfers, inter-bank transfers, merchant payments, and airtime purchases, securing predictable revenue streams and improving processing efficiency.</li>
         <li>Engineered a Kafka streaming pipeline to isolate high-volume consumer activity and transaction history from the main implementation, significantly reducing resource consumption and improving the responsiveness of customer-facing applications.</li>
@@ -764,8 +861,8 @@
     </div>
     <div class="experience-item">
       <h3>Computer Engineer & Full Stack Developer</h3>
-      <div class="company">Gize Trading PLC</div>
-      <div class="duration">Addis Ababa, Ethiopia | 2019 – 2022</div>
+      <div class="company"><i class="fas fa-building"></i> Gize Trading PLC</div>
+      <div class="duration"><i class="far fa-calendar-alt"></i> Addis Ababa, Ethiopia | 2019 – 2022</div>
       <ul>
         <li>Designed, developed, and maintained a real-time GPS tracking software used to monitor over 2,000 motorbikes across Addis Ababa for the Addis Ababa City Road Authority.</li>
         <li>Implemented a Netty-based UDP/TCP server (for tracking devices connection), Jetty web server and Google Guice dependency injector to handle concurrent device connections and real-time updates.</li>
@@ -777,8 +874,8 @@
     </div>
     <div class="experience-item">
       <h3>System & Technical Engineer</h3>
-      <div class="company">Amare Software Design & Development</div>
-      <div class="duration">July 2017 – May 2021</div>
+      <div class="company"><i class="fas fa-building"></i> Amare Software Design & Development</div>
+      <div class="duration"><i class="far fa-calendar-alt"></i> July 2017 – May 2021</div>
       <ul>
         <li>Developed enterprise-grade web applications using Spring Boot and Thymeleaf.</li>
         <li>Implemented working cost estimation, order management, and stock control tool for the Central Printing Press.</li>
@@ -788,8 +885,8 @@
     </div>
     <div class="experience-item">
       <h3>Technical Head</h3>
-      <div class="company">Meftehe Engineering PLC</div>
-      <div class="duration">January 2016 – January 2020</div>
+      <div class="company"><i class="fas fa-building"></i> Meftehe Engineering PLC</div>
+      <div class="duration"><i class="far fa-calendar-alt"></i> January 2016 – January 2020</div>
       <ul>
         <li>Led a cross-functional engineering team delivering custom software, hardware, and industrial automation solutions.</li>
         <li>Managed software development for control systems, device automation, and real-time monitoring tools.</li>
@@ -798,8 +895,8 @@
     </div>
     <div class="experience-item">
       <h3>Software Developer</h3>
-      <div class="company">Apposit LLC</div>
-      <div class="duration">January 2015 – November 2015</div>
+      <div class="company"><i class="fas fa-building"></i> Apposit LLC</div>
+      <div class="duration"><i class="far fa-calendar-alt"></i> January 2015 – November 2015</div>
       <ul>
         <li>Developed health management system using Groovy and Grails (Java-based).</li>
         <li>Designed modules for patient record tracking, appointment scheduling, and medical data analytics.</li>
@@ -809,11 +906,11 @@
   </section>
 
   <section id="portfolio">
-    <h2>Portfolio Projects</h2>
+    <h2><i class="fas fa-folder-open"></i> Portfolio Projects</h2>
     <p class="portfolio-intro">Here is a selection of projects that demonstrate my skills in action. Each project showcases different aspects of my technical expertise, from backend systems to full-stack applications. Click on any project to learn more about its architecture and the problems it solves.</p>
     <div class="portfolio-grid">
       <div class="portfolio-item">
-        <h3>APIs for Paga Consumer App</h3>
+        <h3><i class="fas fa-project-diagram"></i> APIs for Paga Consumer App</h3>
         <div class="portfolio-tags">
           <span class="portfolio-tag">Backend</span>
           <span class="portfolio-tag">Java</span>
@@ -823,10 +920,10 @@
           <span class="portfolio-tag">KYC</span>
         </div>
         <p>At Paga Fintech, I developed and maintained the backend APIs powering the consumer mobile application. This included implementing secure authentication, payment processing, and user management features.</p>
-        <a onclick="openModal('modal1')" style="cursor: pointer;">Learn More →</a>
+        <a onclick="openModal('modal1')" style="cursor: pointer;">Learn More</a>
       </div>
       <div class="portfolio-item">
-        <h3>Registration and Verification Integration</h3>
+        <h3><i class="fas fa-project-diagram"></i> Registration and Verification Integration</h3>
         <div class="portfolio-tags">
           <span class="portfolio-tag">Backend</span>
           <span class="portfolio-tag">Java</span>
@@ -838,10 +935,10 @@
           <span class="portfolio-tag">KYC</span>
         </div>
         <p>At Paga Fintech, I developed and maintained the backend APIs powering the consumer mobile application. This included implementing secure authentication, payment processing, and user management features.</p>
-        <a onclick="openModal('modal2')" style="cursor: pointer;">Learn More →</a>
+        <a onclick="openModal('modal2')" style="cursor: pointer;">Learn More</a>
       </div>
       <div class="portfolio-item">
-        <h3>Fintech Merchant & Banking Integration</h3>
+        <h3><i class="fas fa-project-diagram"></i> Fintech Merchant & Banking Integration</h3>
         <div class="portfolio-tags">
           <span class="portfolio-tag">Backend</span>
           <span class="portfolio-tag">Fintech</span>
@@ -850,10 +947,10 @@
           <span class="portfolio-tag">Microservices</span>
         </div>
         <p>At Paga Fintech, I led the development of critical backend services for the company's expansion into merchant services and banking integrations, ensuring secure and scalable financial transactions.</p>
-        <a onclick="openModal('modal3')" style="cursor: pointer;">Learn More →</a>
+        <a onclick="openModal('modal3')" style="cursor: pointer;">Learn More</a>
       </div>
       <div class="portfolio-item">
-        <h3>Real-Time GPS Tracking System</h3>
+        <h3><i class="fas fa-project-diagram"></i> Real-Time GPS Tracking System</h3>
         <div class="portfolio-tags">
           <span class="portfolio-tag">Full-Stack</span>
           <span class="portfolio-tag">Java</span>
@@ -862,10 +959,10 @@
           <span class="portfolio-tag">High-Concurrency</span>
         </div>
         <p>As the lead engineer at Gize Trading PLC, I architected and developed a comprehensive real-time GPS tracking system capable of handling high-concurrency scenarios with thousands of simultaneous connections.</p>
-        <a onclick="openModal('modal4')" style="cursor: pointer;">Learn More →</a>
+        <a onclick="openModal('modal4')" style="cursor: pointer;">Learn More</a>
       </div>
       <div class="portfolio-item">
-        <h3>Enterprise Management System</h3>
+        <h3><i class="fas fa-project-diagram"></i> Enterprise Management System</h3>
         <div class="portfolio-tags">
           <span class="portfolio-tag">Full-Stack</span>
           <span class="portfolio-tag">Java</span>
@@ -874,10 +971,10 @@
           <span class="portfolio-tag">Enterprise</span>
         </div>
         <p>For the Central Printing Press, I developed an enterprise-grade web application to manage cost estimation, order processing, and inventory management, streamlining business operations.</p>
-        <a onclick="openModal('modal5')" style="cursor: pointer;">Learn More →</a>
+        <a onclick="openModal('modal5')" style="cursor: pointer;">Learn More</a>
       </div>
       <div class="portfolio-item">
-        <h3>Health Information Management System</h3>
+        <h3><i class="fas fa-project-diagram"></i> Health Information Management System</h3>
         <div class="portfolio-tags">
           <span class="portfolio-tag">Full-Stack</span>
           <span class="portfolio-tag">Groovy</span>
@@ -885,30 +982,30 @@
           <span class="portfolio-tag">Healthcare</span>
         </div>
         <p>At Apposit LLC, I was part of the team that developed a comprehensive Health Information Management System to manage patient records, appointments, and medical data efficiently.</p>
-        <a onclick="openModal('modal6')" style="cursor: pointer;">Learn More →</a>
+        <a onclick="openModal('modal6')" style="cursor: pointer;">Learn More</a>
       </div>
     </div>
   </section>
 
   <section id="contact">
-    <h2>Contact Information</h2>
+    <h2><i class="fas fa-envelope"></i> Contact Information</h2>
     <div class="info-grid">
       <div class="info-box">
-        <p><strong>📞 Phone:</strong></p>
-        <p>(+251) 920 783 807</p>
-        <p>(+251) 777 778 540</p>
+        <p><strong><i class="fas fa-phone"></i> Phone:</strong></p>
+        <p><i class="fas fa-mobile-alt"></i> (+251) 920 783 807</p>
+        <p><i class="fas fa-mobile-alt"></i> (+251) 777 778 540</p>
       </div>
       <div class="info-box">
-        <p><strong>📧 Email:</strong></p>
-        <p><a href="mailto:habtamuwgs2001@gmail.com">habtamuwgs2001@gmail.com</a></p>
-        <p><a href="mailto:habtamu.worku.gselassie@gmail.com">habtamu.worku.gselassie@gmail.com</a></p>
+        <p><strong><i class="fas fa-envelope"></i> Email:</strong></p>
+        <p><i class="far fa-envelope"></i> <a href="mailto:habtamuwgs2001@gmail.com">habtamuwgs2001@gmail.com</a></p>
+        <p><i class="far fa-envelope"></i> <a href="mailto:habtamu.worku.gselassie@gmail.com">habtamu.worku.gselassie@gmail.com</a></p>
       </div>
     </div>
     <div class="info-box contact-links">
-      <p><strong>Connect with me:</strong></p>
+      <p><strong><i class="fas fa-share-alt"></i> Connect with me:</strong></p>
       <p>
-        <a href="https://www.linkedin.com/in/habtamuworkugselassie" target="_blank">LinkedIn</a> | 
-        <a href="https://github.com/habtamuworkugselassie" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/habtamuworkugselassie" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a> | 
+        <a href="https://github.com/habtamuworkugselassie" target="_blank"><i class="fab fa-github"></i> GitHub</a>
       </p>
     </div>
   </section>

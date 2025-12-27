@@ -6,6 +6,9 @@
   <title>Habtamu Worku Gebreselassie</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
@@ -26,19 +29,20 @@
       font-size: 1.2rem;
       margin-bottom: 20px;
     }
-    .btn-primary {
-      background: #ffffff;
-      color: #4e54c8;
-      padding: 12px 30px;
-      border-radius: 25px;
-      font-weight: 600;
-      text-transform: uppercase;
-      border: none;
-      cursor: pointer;
-      transition: 0.3s;
+    nav {
+      margin-top: 30px;
     }
-    .btn-primary:hover {
-      background: #f0f0f0;
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 500;
+      padding: 8px 15px;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+    nav a:hover {
+      background: rgba(255, 255, 255, 0.2);
     }
     section {
       padding: 60px 20px;
@@ -65,14 +69,423 @@
     .info-box p {
       margin: 8px 0;
     }
+    .contact-links {
+      text-align: center;
+      margin-top: 20px;
+    }
     .contact-links a {
       color: #4e54c8;
       font-weight: 600;
-      margin-right: 15px;
+      margin: 0 10px;
       text-decoration: none;
     }
     .contact-links a:hover {
       text-decoration: underline;
+    }
+    .summary-box {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.05);
+      line-height: 1.8;
+      font-size: 1.1rem;
+    }
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+    .portfolio-item {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .portfolio-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0px 8px 20px rgba(0,0,0,0.1);
+    }
+    .portfolio-item h3 {
+      color: #4e54c8;
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+    .portfolio-item p {
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+    .portfolio-item a {
+      color: #4e54c8;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+    }
+    .portfolio-item a:hover {
+      text-decoration: underline;
+    }
+    .portfolio-item a::after {
+      content: " →";
+      margin-left: 5px;
+    }
+    .portfolio-item a {
+      cursor: pointer;
+    }
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.5);
+      animation: fadeIn 0.3s;
+    }
+    .modal.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .modal-content {
+      background-color: #fff;
+      margin: auto;
+      padding: 0;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 800px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+      animation: slideDown 0.3s;
+    }
+    @keyframes slideDown {
+      from {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    .modal-header {
+      padding: 25px 30px;
+      background: linear-gradient(135deg, #4e54c8, #8f94fb);
+      color: white;
+      border-radius: 12px 12px 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .modal-header h3 {
+      margin: 0;
+      font-size: 1.8rem;
+      color: white;
+    }
+    .close {
+      color: white;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+      line-height: 1;
+      transition: transform 0.2s;
+    }
+    .close:hover {
+      transform: scale(1.2);
+    }
+    .modal-body {
+      padding: 30px;
+    }
+    .modal-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .modal-tag {
+      background: #e8eaf6;
+      color: #4e54c8;
+      padding: 6px 14px;
+      border-radius: 15px;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    .modal-body h4 {
+      color: #4e54c8;
+      margin-top: 25px;
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+    }
+    .modal-body p {
+      line-height: 1.8;
+      color: #555;
+      margin-bottom: 15px;
+    }
+    .modal-body ul {
+      margin: 15px 0;
+      padding-left: 25px;
+    }
+    .modal-body li {
+      margin-bottom: 10px;
+      line-height: 1.7;
+      color: #555;
+    }
+    .portfolio-intro {
+      text-align: center;
+      color: #666;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 30px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .portfolio-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 15px;
+    }
+    .portfolio-tag {
+      background: #e8eaf6;
+      color: #4e54c8;
+      padding: 4px 12px;
+      border-radius: 15px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    .experience-item {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.05);
+      margin-bottom: 25px;
+      border-left: 4px solid #4e54c8;
+    }
+    .experience-item h3 {
+      color: #4e54c8;
+      margin-top: 0;
+      margin-bottom: 5px;
+      font-size: 1.5rem;
+    }
+    .experience-item .company {
+      color: #666;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    .experience-item .duration {
+      color: #999;
+      font-style: italic;
+      margin-bottom: 15px;
+    }
+    .experience-item ul {
+      margin: 15px 0;
+      padding-left: 20px;
+    }
+    .experience-item li {
+      margin-bottom: 8px;
+      line-height: 1.6;
+      color: #555;
+    }
+    /* Technical Skills Styles */
+    .skills-intro {
+      text-align: center;
+      color: #666;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 40px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .skills-chart {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.05);
+      margin-bottom: 30px;
+    }
+    .chart-item {
+      margin-bottom: 25px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .chart-item:hover {
+      transform: translateX(5px);
+    }
+    .chart-label {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #333;
+      transition: color 0.3s;
+    }
+    .chart-item:hover .chart-label {
+      color: #4e54c8;
+    }
+    .chart-bar-container {
+      width: 100%;
+      height: 30px;
+      background: #e8eaf6;
+      border-radius: 15px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+    .chart-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #4e54c8, #8f94fb);
+      border-radius: 15px;
+      transition: all 0.3s ease-in-out;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 10px;
+      color: white;
+      font-weight: 600;
+      font-size: 0.9rem;
+      position: relative;
+      cursor: pointer;
+    }
+    .chart-bar:hover {
+      background: linear-gradient(90deg, #3a3fb8, #7a80f0);
+      transform: scaleY(1.1);
+      box-shadow: 0 4px 12px rgba(78, 84, 200, 0.4);
+    }
+    .chart-item:hover .chart-bar {
+      box-shadow: 0 4px 12px rgba(78, 84, 200, 0.3);
+    }
+    .chart-tooltip {
+      position: absolute;
+      background: rgba(0, 0, 0, 0.9);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s;
+      z-index: 1000;
+      white-space: nowrap;
+      top: -45px;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+    .chart-tooltip::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 5px solid transparent;
+      border-top-color: rgba(0, 0, 0, 0.9);
+    }
+    .chart-bar-container:hover .chart-tooltip {
+      opacity: 1;
+    }
+    .chart-details {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+      padding: 0;
+      margin-top: 10px;
+      background: #f8f9fa;
+      border-radius: 8px;
+    }
+    .chart-details.expanded {
+      max-height: 500px;
+      padding: 15px;
+      margin-top: 15px;
+    }
+    .chart-details ul {
+      margin: 10px 0 0 0;
+      padding-left: 20px;
+      list-style-type: disc;
+    }
+    .chart-details li {
+      margin-bottom: 8px;
+      color: #555;
+      line-height: 1.6;
+    }
+    .chart-details h4 {
+      color: #4e54c8;
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 1rem;
+    }
+    .skills-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+    .filter-btn {
+      padding: 10px 20px;
+      border: 2px solid #4e54c8;
+      background: white;
+      color: #4e54c8;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s;
+      font-size: 0.95rem;
+    }
+    .filter-btn:hover {
+      background: #f0f0f0;
+    }
+    .filter-btn.active {
+      background: #4e54c8;
+      color: white;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .skill-category {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.05);
+    }
+    .skill-category.hidden {
+      display: none;
+    }
+    .skill-category h4 {
+      color: #4e54c8;
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+      border-bottom: 2px solid #e8eaf6;
+      padding-bottom: 10px;
+    }
+    .skill-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .skill-item {
+      background: #e8eaf6;
+      color: #4e54c8;
+      padding: 6px 14px;
+      border-radius: 15px;
+      font-size: 0.9rem;
+      font-weight: 500;
     }
     footer {
       background: #222;
@@ -80,44 +493,743 @@
       text-align: center;
       padding: 30px 20px;
     }
+    @media (max-width: 768px) {
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+      header h1 {
+        font-size: 2rem;
+      }
+    }
   </style>
 </head>
 <body>
 
   <header>
     <h1>Habtamu Worku Gebreselassie</h1>
-    <p>Software Engineer • Developer • Tech Enthusiast</p>
-    <button class="btn-primary" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">About Me</button>
+    <p>Addis Ababa, Ethiopia</p>
+    <nav>
+      <a href="#summary">Summary</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </header>
 
-  <section id="about">
-    <h2>About Me</h2>
-    <p>Hello! I am Habtamu Worku Gebreselassie from Addis Ababa, Ethiopia. I enjoy building projects, learning new technologies, and solving real-world problems through software development. Welcome to my portfolio!</p>
+  <section id="summary">
+    <h2>Professional Summary</h2>
+    <div class="summary-box">
+      <p>A highly accomplished and results-driven Senior Software Engineer with over a decade of hands-on experience in designing, developing, and deploying robust, high-availability systems. Specializes in sophisticated backend architecture, full-stack development, and complex fintech integrations for global markets. An expert in Java (Spring Boot) and event-driven, microservices-based architectures, with a proven track record of building secure, scalable, and high-performance financial platforms. Demonstrates exceptional ability in leading development projects, mentoring engineering teams, and delivering innovative, end-to-end solutions for the financial services, telecommunications, and enterprise sectors.</p>
+    </div>
   </section>
 
-  <section>
-    <h2>Contact & Links</h2>
+  <section id="skills">
+    <h2>Technical Skills</h2>
+    <p class="skills-intro">This chart highlights key technologies where I possess deep expertise and extensive experience. My skills span across the entire development lifecycle, from backend architecture to cloud deployment. Use the filters below to explore specific categories of my technical abilities.</p>
+    
+    <div class="skills-chart">
+      <div class="chart-item" onclick="toggleChartDetails(this)">
+        <div class="chart-label">
+          <span>Java & Spring Boot</span>
+          <span>90%</span>
+        </div>
+        <div class="chart-bar-container">
+          <div class="chart-bar" style="width: 90%;" data-tooltip="Expert level: 10+ years experience">90%</div>
+          <div class="chart-tooltip">Expert level: 10+ years experience</div>
+        </div>
+        <div class="chart-details">
+          <h4>Key Expertise:</h4>
+          <ul>
+            <li>Spring Boot microservices architecture</li>
+            <li>Spring Security and authentication</li>
+            <li>RESTful API design and implementation</li>
+            <li>Event-driven architecture patterns</li>
+            <li>Enterprise Java development</li>
+          </ul>
+        </div>
+      </div>
+      <div class="chart-item" onclick="toggleChartDetails(this)">
+        <div class="chart-label">
+          <span>Backend Architecture</span>
+          <span>85%</span>
+        </div>
+        <div class="chart-bar-container">
+          <div class="chart-bar" style="width: 85%;" data-tooltip="Advanced: Microservices, distributed systems">85%</div>
+          <div class="chart-tooltip">Advanced: Microservices, distributed systems</div>
+        </div>
+        <div class="chart-details">
+          <h4>Key Expertise:</h4>
+          <ul>
+            <li>Microservices design and implementation</li>
+            <li>Distributed systems architecture</li>
+            <li>Event-driven architecture</li>
+            <li>System scalability and performance optimization</li>
+            <li>API gateway and service mesh patterns</li>
+          </ul>
+        </div>
+      </div>
+      <div class="chart-item" onclick="toggleChartDetails(this)">
+        <div class="chart-label">
+          <span>Databases (SQL/NoSQL)</span>
+          <span>85%</span>
+        </div>
+        <div class="chart-bar-container">
+          <div class="chart-bar" style="width: 85%;" data-tooltip="Advanced: PostgreSQL, MySQL, MongoDB, Redis">85%</div>
+          <div class="chart-tooltip">Advanced: PostgreSQL, MySQL, MongoDB, Redis</div>
+        </div>
+        <div class="chart-details">
+          <h4>Key Expertise:</h4>
+          <ul>
+            <li>PostgreSQL and MySQL database design</li>
+            <li>MongoDB NoSQL database management</li>
+            <li>Redis caching strategies</li>
+            <li>Database optimization and indexing</li>
+            <li>Data modeling and migration</li>
+          </ul>
+        </div>
+      </div>
+      <div class="chart-item" onclick="toggleChartDetails(this)">
+        <div class="chart-label">
+          <span>Fintech Integration</span>
+          <span>85%</span>
+        </div>
+        <div class="chart-bar-container">
+          <div class="chart-bar" style="width: 85%;" data-tooltip="Advanced: Payment systems, banking APIs">85%</div>
+          <div class="chart-tooltip">Advanced: Payment systems, banking APIs</div>
+        </div>
+        <div class="chart-details">
+          <h4>Key Expertise:</h4>
+          <ul>
+            <li>Payment gateway integrations (NIBSS, Synctera)</li>
+            <li>Banking API development</li>
+            <li>KYC and compliance systems</li>
+            <li>Financial transaction processing</li>
+            <li>Recurring payment engines</li>
+          </ul>
+        </div>
+      </div>
+      <div class="chart-item" onclick="toggleChartDetails(this)">
+        <div class="chart-label">
+          <span>DevOps & Cloud</span>
+          <span>80%</span>
+        </div>
+        <div class="chart-bar-container">
+          <div class="chart-bar" style="width: 80%;" data-tooltip="Proficient: Docker, Kubernetes, AWS, CI/CD">80%</div>
+          <div class="chart-tooltip">Proficient: Docker, Kubernetes, AWS, CI/CD</div>
+        </div>
+        <div class="chart-details">
+          <h4>Key Expertise:</h4>
+          <ul>
+            <li>Docker containerization</li>
+            <li>Kubernetes orchestration</li>
+            <li>AWS cloud services</li>
+            <li>CI/CD pipeline setup (Jenkins)</li>
+            <li>Infrastructure as Code</li>
+          </ul>
+        </div>
+      </div>
+      <div class="chart-item" onclick="toggleChartDetails(this)">
+        <div class="chart-label">
+          <span>Full-Stack Dev</span>
+          <span>75%</span>
+        </div>
+        <div class="chart-bar-container">
+          <div class="chart-bar" style="width: 75%;" data-tooltip="Proficient: Frontend and backend integration">75%</div>
+          <div class="chart-tooltip">Proficient: Frontend and backend integration</div>
+        </div>
+        <div class="chart-details">
+          <h4>Key Expertise:</h4>
+          <ul>
+            <li>Full-stack web application development</li>
+            <li>Thymeleaf server-side rendering</li>
+            <li>Frontend-backend integration</li>
+            <li>JavaScript and modern web technologies</li>
+            <li>Responsive web design</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="skills-filters">
+      <button class="filter-btn active" onclick="filterSkills('all', this)">All</button>
+      <button class="filter-btn" onclick="filterSkills('languages', this)">Languages</button>
+      <button class="filter-btn" onclick="filterSkills('frameworks', this)">Frameworks & Libraries</button>
+      <button class="filter-btn" onclick="filterSkills('backend', this)">Backend & Architecture</button>
+      <button class="filter-btn" onclick="filterSkills('databases', this)">Databases & Caching</button>
+      <button class="filter-btn" onclick="filterSkills('messaging', this)">Messaging Queues</button>
+      <button class="filter-btn" onclick="filterSkills('devops', this)">DevOps & Cloud</button>
+      <button class="filter-btn" onclick="filterSkills('security', this)">Security</button>
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill-category" data-category="languages">
+        <h4>Languages</h4>
+        <div class="skill-items">
+          <span class="skill-item">Java</span>
+          <span class="skill-item">Python</span>
+          <span class="skill-item">Groovy</span>
+          <span class="skill-item">PHP</span>
+          <span class="skill-item">C#</span>
+          <span class="skill-item">JavaScript</span>
+        </div>
+      </div>
+
+      <div class="skill-category" data-category="frameworks">
+        <h4>Frameworks & Libraries</h4>
+        <div class="skill-items">
+          <span class="skill-item">Spring Boot</span>
+          <span class="skill-item">Spring Security</span>
+          <span class="skill-item">Spring Framework</span>
+          <span class="skill-item">FastAPI</span>
+          <span class="skill-item">Grails</span>
+          <span class="skill-item">Thymeleaf</span>
+          <span class="skill-item">Netty</span>
+          <span class="skill-item">Jetty</span>
+        </div>
+      </div>
+
+      <div class="skill-category" data-category="backend">
+        <h4>Backend & Architecture</h4>
+        <div class="skill-items">
+          <span class="skill-item">Microservices</span>
+          <span class="skill-item">Event-Driven Architecture</span>
+          <span class="skill-item">RESTful APIs</span>
+          <span class="skill-item">Distributed Systems</span>
+          <span class="skill-item">Strategy Design Patterns</span>
+          <span class="skill-item">Concurrency Management</span>
+        </div>
+      </div>
+
+      <div class="skill-category" data-category="databases">
+        <h4>Databases & Caching</h4>
+        <div class="skill-items">
+          <span class="skill-item">PostgreSQL</span>
+          <span class="skill-item">MySQL</span>
+          <span class="skill-item">MongoDB</span>
+          <span class="skill-item">Redis</span>
+          <span class="skill-item">Oracle</span>
+        </div>
+      </div>
+
+      <div class="skill-category" data-category="messaging">
+        <h4>Messaging Queues</h4>
+        <div class="skill-items">
+          <span class="skill-item">Kafka</span>
+          <span class="skill-item">RabbitMQ</span>
+          <span class="skill-item">ActiveMQ</span>
+        </div>
+      </div>
+
+      <div class="skill-category" data-category="devops">
+        <h4>DevOps & Cloud</h4>
+        <div class="skill-items">
+          <span class="skill-item">Docker</span>
+          <span class="skill-item">Kubernetes</span>
+          <span class="skill-item">AWS</span>
+          <span class="skill-item">CI/CD</span>
+          <span class="skill-item">Jenkins</span>
+          <span class="skill-item">Git</span>
+        </div>
+      </div>
+
+      <div class="skill-category" data-category="security">
+        <h4>Security</h4>
+        <div class="skill-items">
+          <span class="skill-item">OAuth 2.0</span>
+          <span class="skill-item">JWT</span>
+          <span class="skill-item">SSL/TLS</span>
+          <span class="skill-item">Encryption</span>
+          <span class="skill-item">Security Best Practices</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <h2>Professional Experience</h2>
+    <div class="experience-item">
+      <h3>Software Engineer III</h3>
+      <div class="company">Paga Fintech Ltd.</div>
+      <div class="duration">Nigeria & Ethiopia | Present</div>
+      <ul>
+        <li>Designed and implemented a robust Recurring Payment Engine to standardize and automate core financial processes, including money transfers, inter-bank transfers, merchant payments, and airtime purchases, securing predictable revenue streams and improving processing efficiency.</li>
+        <li>Engineered a Kafka streaming pipeline to isolate high-volume consumer activity and transaction history from the main implementation, significantly reducing resource consumption and improving the responsiveness of customer-facing applications.</li>
+        <li>Designed and developed a suite of high-performance RESTful APIs to power core consumer application features (e.g., registration, verification, and KYC flows), completely streamlining the user onboarding process through integrated services like Smile ID (Biometric National ID DB service provider in Nigeria).</li>
+        <li>Designed and implemented a robust monthly account statement generating tool and including email notification to consumers.</li>
+        <li>Optimized backend transaction workflows and introduced refined data processing techniques, resulting in a measurable reduction in processing latency and improving the overall user experience for millions of active users.</li>
+        <li>Contributed to the successful integration of backend services with multiple critical financial providers (including NIBSS NIP, Synctera, Meta Ads, and Smile ID), directly enabling the launch of new platform features and expanding market service offerings.</li>
+        <li>Designed and implemented scalable, maintainable microservices architecture using Java (Spring Boot), applying advanced Strategy and Event-Driven Design Patterns to ensure financial compliance and high-availability.</li>
+      </ul>
+    </div>
+    <div class="experience-item">
+      <h3>Computer Engineer & Full Stack Developer</h3>
+      <div class="company">Gize Trading PLC</div>
+      <div class="duration">Addis Ababa, Ethiopia | 2019 – 2022</div>
+      <ul>
+        <li>Designed, developed, and maintained a real-time GPS tracking software used to monitor over 2,000 motorbikes across Addis Ababa for the Addis Ababa City Road Authority.</li>
+        <li>Implemented a Netty-based UDP/TCP server (for tracking devices connection), Jetty web server and Google Guice dependency injector to handle concurrent device connections and real-time updates.</li>
+        <li>Supported multiple GPS device protocols, ensuring compatibility and smooth integration with diverse hardware.</li>
+        <li>Built robust backend modules for position tracking, trip analytics, and vehicle monitoring dashboards.</li>
+        <li>Improved system reliability and performance through efficient threading and optimized I/O handling in Netty.</li>
+        <li>Managed deployment, maintenance, and continuous improvements to ensure high uptime and stability.</li>
+      </ul>
+    </div>
+    <div class="experience-item">
+      <h3>System & Technical Engineer</h3>
+      <div class="company">Amare Software Design & Development</div>
+      <div class="duration">July 2017 – May 2021</div>
+      <ul>
+        <li>Developed enterprise-grade web applications using Spring Boot and Thymeleaf.</li>
+        <li>Implemented working cost estimation, order management, and stock control tool for the Central Printing Press.</li>
+        <li>Designed and deployed secure system architecture with network infrastructure management.</li>
+        <li>Automated system deployment and maintenance scripts to improve operational efficiency.</li>
+      </ul>
+    </div>
+    <div class="experience-item">
+      <h3>Technical Head</h3>
+      <div class="company">Meftehe Engineering PLC</div>
+      <div class="duration">January 2016 – January 2020</div>
+      <ul>
+        <li>Led a cross-functional engineering team delivering custom software, hardware, and industrial automation solutions.</li>
+        <li>Managed software development for control systems, device automation, and real-time monitoring tools.</li>
+        <li>Translated client requirements into technical specifications and project roadmaps.</li>
+      </ul>
+    </div>
+    <div class="experience-item">
+      <h3>Software Developer</h3>
+      <div class="company">Apposit LLC</div>
+      <div class="duration">January 2015 – November 2015</div>
+      <ul>
+        <li>Developed health management system using Groovy and Grails (Java-based).</li>
+        <li>Designed modules for patient record tracking, appointment scheduling, and medical data analytics.</li>
+        <li>Collaborated with stakeholders to ensure compliance with healthcare standards and workflow efficiency.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="portfolio">
+    <h2>Portfolio Projects</h2>
+    <p class="portfolio-intro">Here is a selection of projects that demonstrate my skills in action. Each project showcases different aspects of my technical expertise, from backend systems to full-stack applications. Click on any project to learn more about its architecture and the problems it solves.</p>
+    <div class="portfolio-grid">
+      <div class="portfolio-item">
+        <h3>APIs for Paga Consumer App</h3>
+        <div class="portfolio-tags">
+          <span class="portfolio-tag">Backend</span>
+          <span class="portfolio-tag">Java</span>
+          <span class="portfolio-tag">Spring Boot</span>
+          <span class="portfolio-tag">Fintech</span>
+          <span class="portfolio-tag">Microservices</span>
+          <span class="portfolio-tag">KYC</span>
+        </div>
+        <p>At Paga Fintech, I developed and maintained the backend APIs powering the consumer mobile application. This included implementing secure authentication, payment processing, and user management features.</p>
+        <a onclick="openModal('modal1')" style="cursor: pointer;">Learn More →</a>
+      </div>
+      <div class="portfolio-item">
+        <h3>Registration and Verification Integration</h3>
+        <div class="portfolio-tags">
+          <span class="portfolio-tag">Backend</span>
+          <span class="portfolio-tag">Java</span>
+          <span class="portfolio-tag">Spring Boot</span>
+          <span class="portfolio-tag">Fintech</span>
+          <span class="portfolio-tag">Microservices</span>
+          <span class="portfolio-tag">NIBSS</span>
+          <span class="portfolio-tag">Smile</span>
+          <span class="portfolio-tag">KYC</span>
+        </div>
+        <p>At Paga Fintech, I developed and maintained the backend APIs powering the consumer mobile application. This included implementing secure authentication, payment processing, and user management features.</p>
+        <a onclick="openModal('modal2')" style="cursor: pointer;">Learn More →</a>
+      </div>
+      <div class="portfolio-item">
+        <h3>Fintech Merchant & Banking Integration</h3>
+        <div class="portfolio-tags">
+          <span class="portfolio-tag">Backend</span>
+          <span class="portfolio-tag">Fintech</span>
+          <span class="portfolio-tag">Java</span>
+          <span class="portfolio-tag">Spring Boot</span>
+          <span class="portfolio-tag">Microservices</span>
+        </div>
+        <p>At Paga Fintech, I led the development of critical backend services for the company's expansion into merchant services and banking integrations, ensuring secure and scalable financial transactions.</p>
+        <a onclick="openModal('modal3')" style="cursor: pointer;">Learn More →</a>
+      </div>
+      <div class="portfolio-item">
+        <h3>Real-Time GPS Tracking System</h3>
+        <div class="portfolio-tags">
+          <span class="portfolio-tag">Full-Stack</span>
+          <span class="portfolio-tag">Java</span>
+          <span class="portfolio-tag">Netty</span>
+          <span class="portfolio-tag">PostgreSQL</span>
+          <span class="portfolio-tag">High-Concurrency</span>
+        </div>
+        <p>As the lead engineer at Gize Trading PLC, I architected and developed a comprehensive real-time GPS tracking system capable of handling high-concurrency scenarios with thousands of simultaneous connections.</p>
+        <a onclick="openModal('modal4')" style="cursor: pointer;">Learn More →</a>
+      </div>
+      <div class="portfolio-item">
+        <h3>Enterprise Management System</h3>
+        <div class="portfolio-tags">
+          <span class="portfolio-tag">Full-Stack</span>
+          <span class="portfolio-tag">Java</span>
+          <span class="portfolio-tag">Spring Boot</span>
+          <span class="portfolio-tag">Thymeleaf</span>
+          <span class="portfolio-tag">Enterprise</span>
+        </div>
+        <p>For the Central Printing Press, I developed an enterprise-grade web application to manage cost estimation, order processing, and inventory management, streamlining business operations.</p>
+        <a onclick="openModal('modal5')" style="cursor: pointer;">Learn More →</a>
+      </div>
+      <div class="portfolio-item">
+        <h3>Health Information Management System</h3>
+        <div class="portfolio-tags">
+          <span class="portfolio-tag">Full-Stack</span>
+          <span class="portfolio-tag">Groovy</span>
+          <span class="portfolio-tag">Grails</span>
+          <span class="portfolio-tag">Healthcare</span>
+        </div>
+        <p>At Apposit LLC, I was part of the team that developed a comprehensive Health Information Management System to manage patient records, appointments, and medical data efficiently.</p>
+        <a onclick="openModal('modal6')" style="cursor: pointer;">Learn More →</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Information</h2>
     <div class="info-grid">
       <div class="info-box">
-        <p><strong>Location:</strong> Addis Ababa, Ethiopia</p>
-        <p><strong>Phone:</strong> (+251) 920 783 807</p>
-        <p><strong>Phone:</strong> (+251) 777 778 540</p>
-        <p><strong>Email:</strong> <a href="mailto:habtamuwgs2001@gmail.com">habtamuwgs2001@gmail.com</a></p>
-        <p><strong>Email:</strong> <a href="mailto:habtamu.worku.gselassie@gmail.com">habtamu.worku.gselassie@gmail.com</a></p>
+        <p><strong>📞 Phone:</strong></p>
+        <p>(+251) 920 783 807</p>
+        <p>(+251) 777 778 540</p>
       </div>
-      <div class="info-box contact-links">
-        <p><strong>Connect with me:</strong></p>
-        <p>
-          <a href="https://www.linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
-          <a href="https://github.com/habtamuworkugselassie" target="_blank">GitHub</a>
-        </p>
+      <div class="info-box">
+        <p><strong>📧 Email:</strong></p>
+        <p><a href="mailto:habtamuwgs2001@gmail.com">habtamuwgs2001@gmail.com</a></p>
+        <p><a href="mailto:habtamu.worku.gselassie@gmail.com">habtamu.worku.gselassie@gmail.com</a></p>
       </div>
+    </div>
+    <div class="info-box contact-links">
+      <p><strong>Connect with me:</strong></p>
+      <p>
+        <a href="https://www.linkedin.com/in/habtamuworkugselassie" target="_blank">LinkedIn</a> | 
+        <a href="https://github.com/habtamuworkugselassie" target="_blank">GitHub</a>
+      </p>
     </div>
   </section>
 
   <footer>
     &copy; 2025 Habtamu Worku Gebreselassie • All Rights Reserved
   </footer>
+
+  <!-- Modal 1: APIs for Paga Consumer App -->
+  <div id="modal1" class="modal" onclick="closeModalOnBackdrop(event, 'modal1')">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h3>APIs for Paga Consumer App</h3>
+        <span class="close" onclick="closeModal('modal1')">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div class="modal-tags">
+          <span class="modal-tag">Backend</span>
+          <span class="modal-tag">Java</span>
+          <span class="modal-tag">Spring Boot</span>
+          <span class="modal-tag">Fintech</span>
+          <span class="modal-tag">Microservices</span>
+          <span class="modal-tag">KYC</span>
+        </div>
+        <h4>Overview</h4>
+        <p>At Paga Fintech, I developed and maintained the backend APIs powering the consumer mobile application. This project involved creating a robust, scalable microservices architecture to support millions of active users across Nigeria and Ethiopia.</p>
+        
+        <h4>Key Features</h4>
+        <ul>
+          <li>Secure authentication and authorization systems</li>
+          <li>Payment processing and transaction management</li>
+          <li>User registration and profile management</li>
+          <li>KYC (Know Your Customer) verification flows</li>
+          <li>Real-time transaction processing</li>
+        </ul>
+
+        <h4>Technical Implementation</h4>
+        <p>Built using Java and Spring Boot with a microservices architecture, implementing RESTful APIs that handle high-volume transactions. Applied advanced design patterns including Strategy and Event-Driven patterns to ensure financial compliance and high availability.</p>
+
+        <h4>Impact</h4>
+        <p>These APIs serve as the backbone for the consumer mobile application, enabling secure and efficient financial transactions for millions of users. The system processes thousands of transactions daily with high reliability and low latency.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Registration and Verification Integration -->
+  <div id="modal2" class="modal" onclick="closeModalOnBackdrop(event, 'modal2')">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h3>Registration and Verification Integration</h3>
+        <span class="close" onclick="closeModal('modal2')">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div class="modal-tags">
+          <span class="modal-tag">Backend</span>
+          <span class="modal-tag">Java</span>
+          <span class="modal-tag">Spring Boot</span>
+          <span class="modal-tag">Fintech</span>
+          <span class="modal-tag">Microservices</span>
+          <span class="modal-tag">NIBSS</span>
+          <span class="modal-tag">Smile</span>
+          <span class="modal-tag">KYC</span>
+        </div>
+        <h4>Overview</h4>
+        <p>Designed and developed a suite of high-performance RESTful APIs to power core consumer application features, completely streamlining the user onboarding process through integrated services like Smile ID (Biometric National ID DB service provider in Nigeria).</p>
+        
+        <h4>Key Features</h4>
+        <ul>
+          <li>User registration with biometric verification</li>
+          <li>Integration with Smile ID for National ID verification</li>
+          <li>NIBSS integration for bank account verification</li>
+          <li>Automated KYC compliance checks</li>
+          <li>Multi-step verification workflows</li>
+        </ul>
+
+        <h4>Technical Implementation</h4>
+        <p>Built using Java Spring Boot microservices, integrating with external APIs including Smile ID for biometric verification and NIBSS for bank account validation. Implemented secure data handling and compliance with financial regulations.</p>
+
+        <h4>Impact</h4>
+        <p>Streamlined the user onboarding process, reducing registration time significantly while ensuring compliance with KYC regulations. The integration with multiple verification providers provides a seamless experience for users across different regions.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3: Fintech Merchant & Banking Integration -->
+  <div id="modal3" class="modal" onclick="closeModalOnBackdrop(event, 'modal3')">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h3>Fintech Merchant & Banking Integration</h3>
+        <span class="close" onclick="closeModal('modal3')">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div class="modal-tags">
+          <span class="modal-tag">Backend</span>
+          <span class="modal-tag">Fintech</span>
+          <span class="modal-tag">Java</span>
+          <span class="modal-tag">Spring Boot</span>
+          <span class="modal-tag">Microservices</span>
+        </div>
+        <h4>Overview</h4>
+        <p>Led the development of critical backend services for Paga Fintech's expansion into merchant services and banking integrations. This project involved integrating with multiple financial providers including NIBSS NIP, Synctera, and Meta Ads.</p>
+        
+        <h4>Key Features</h4>
+        <ul>
+          <li>Merchant payment processing</li>
+          <li>Banking integration with NIBSS NIP</li>
+          <li>Synctera integration for financial services</li>
+          <li>Meta Ads integration for marketing campaigns</li>
+          <li>Recurring payment engine for automated transactions</li>
+        </ul>
+
+        <h4>Technical Implementation</h4>
+        <p>Designed and implemented a robust Recurring Payment Engine to standardize and automate core financial processes including money transfers, inter-bank transfers, merchant payments, and airtime purchases. Built using Java Spring Boot with microservices architecture.</p>
+
+        <h4>Impact</h4>
+        <p>Enabled the launch of new platform features and expanded market service offerings. The recurring payment engine secured predictable revenue streams and improved processing efficiency, directly contributing to business growth.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 4: Real-Time GPS Tracking System -->
+  <div id="modal4" class="modal" onclick="closeModalOnBackdrop(event, 'modal4')">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h3>Real-Time GPS Tracking System</h3>
+        <span class="close" onclick="closeModal('modal4')">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div class="modal-tags">
+          <span class="modal-tag">Full-Stack</span>
+          <span class="modal-tag">Java</span>
+          <span class="modal-tag">Netty</span>
+          <span class="modal-tag">PostgreSQL</span>
+          <span class="modal-tag">High-Concurrency</span>
+        </div>
+        <h4>Overview</h4>
+        <p>As the lead engineer at Gize Trading PLC, I architected and developed a comprehensive real-time GPS tracking system used to monitor over 2,000 motorbikes across Addis Ababa for the Addis Ababa City Road Authority.</p>
+        
+        <h4>Key Features</h4>
+        <ul>
+          <li>Real-time GPS position tracking</li>
+          <li>Support for multiple GPS device protocols</li>
+          <li>Trip analytics and reporting</li>
+          <li>Vehicle monitoring dashboards</li>
+          <li>High-concurrency handling (thousands of simultaneous connections)</li>
+        </ul>
+
+        <h4>Technical Implementation</h4>
+        <p>Implemented a Netty-based UDP/TCP server for tracking device connections, Jetty web server, and Google Guice dependency injector to handle concurrent device connections and real-time updates. Used PostgreSQL for data persistence and optimized I/O handling in Netty for improved system reliability and performance.</p>
+
+        <h4>Impact</h4>
+        <p>The system successfully monitors over 2,000 vehicles in real-time, providing the Addis Ababa City Road Authority with comprehensive tracking and analytics capabilities. The high-concurrency architecture ensures stable performance even under heavy load.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 5: Enterprise Management System -->
+  <div id="modal5" class="modal" onclick="closeModalOnBackdrop(event, 'modal5')">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h3>Enterprise Management System</h3>
+        <span class="close" onclick="closeModal('modal5')">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div class="modal-tags">
+          <span class="modal-tag">Full-Stack</span>
+          <span class="modal-tag">Java</span>
+          <span class="modal-tag">Spring Boot</span>
+          <span class="modal-tag">Thymeleaf</span>
+          <span class="modal-tag">Enterprise</span>
+        </div>
+        <h4>Overview</h4>
+        <p>Developed an enterprise-grade web application for the Central Printing Press to manage cost estimation, order processing, and inventory management, streamlining business operations and improving efficiency.</p>
+        
+        <h4>Key Features</h4>
+        <ul>
+          <li>Cost estimation and quotation management</li>
+          <li>Order processing and tracking</li>
+          <li>Inventory management system</li>
+          <li>Customer relationship management</li>
+          <li>Reporting and analytics dashboard</li>
+        </ul>
+
+        <h4>Technical Implementation</h4>
+        <p>Built using Java Spring Boot for the backend and Thymeleaf for server-side rendering. The application follows enterprise architecture patterns with proper separation of concerns, ensuring maintainability and scalability.</p>
+
+        <h4>Impact</h4>
+        <p>Streamlined business operations for the Central Printing Press, reducing manual work and improving accuracy in cost estimation and order processing. The system provides comprehensive management capabilities for the entire business workflow.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 6: Health Information Management System -->
+  <div id="modal6" class="modal" onclick="closeModalOnBackdrop(event, 'modal6')">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h3>Health Information Management System</h3>
+        <span class="close" onclick="closeModal('modal6')">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div class="modal-tags">
+          <span class="modal-tag">Full-Stack</span>
+          <span class="modal-tag">Groovy</span>
+          <span class="modal-tag">Grails</span>
+          <span class="modal-tag">Healthcare</span>
+        </div>
+        <h4>Overview</h4>
+        <p>At Apposit LLC, I was part of the team that developed a comprehensive Health Information Management System to manage patient records, appointments, and medical data efficiently, improving healthcare delivery and patient care.</p>
+        
+        <h4>Key Features</h4>
+        <ul>
+          <li>Patient record management</li>
+          <li>Appointment scheduling system</li>
+          <li>Medical data storage and retrieval</li>
+          <li>Healthcare provider management</li>
+          <li>Reporting and analytics for healthcare metrics</li>
+        </ul>
+
+        <h4>Technical Implementation</h4>
+        <p>Developed using Groovy and Grails framework, providing a rapid development environment for building robust healthcare applications. The system follows healthcare data standards and ensures secure handling of sensitive medical information.</p>
+
+        <h4>Impact</h4>
+        <p>The system enables healthcare providers to efficiently manage patient information, schedule appointments, and access medical records quickly. This improves the quality of patient care and streamlines healthcare operations.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+      }
+    }
+
+    function closeModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto'; // Restore scrolling
+      }
+    }
+
+    function closeModalOnBackdrop(event, modalId) {
+      // Close modal when clicking on the backdrop (not the content)
+      if (event.target.classList.contains('modal')) {
+        closeModal(modalId);
+      }
+    }
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        const modals = document.querySelectorAll('.modal.active');
+        modals.forEach(modal => {
+          modal.classList.remove('active');
+          document.body.style.overflow = 'auto';
+        });
+      }
+    });
+
+    // Skills filtering function
+    function filterSkills(category, button) {
+      // Update active button
+      const buttons = document.querySelectorAll('.filter-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+
+      // Show/hide skill categories
+      const categories = document.querySelectorAll('.skill-category');
+      categories.forEach(cat => {
+        if (category === 'all') {
+          cat.classList.remove('hidden');
+        } else {
+          if (cat.getAttribute('data-category') === category) {
+            cat.classList.remove('hidden');
+          } else {
+            cat.classList.add('hidden');
+          }
+        }
+      });
+    }
+
+    // Toggle chart details on click
+    function toggleChartDetails(element) {
+      const details = element.querySelector('.chart-details');
+      if (details) {
+        details.classList.toggle('expanded');
+      }
+    }
+
+    // Enhanced tooltip positioning
+    document.addEventListener('DOMContentLoaded', function() {
+      const chartBars = document.querySelectorAll('.chart-bar-container');
+      chartBars.forEach(container => {
+        const bar = container.querySelector('.chart-bar');
+        const tooltip = container.querySelector('.chart-tooltip');
+        
+        container.addEventListener('mousemove', function(e) {
+          if (tooltip) {
+            const rect = container.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            tooltip.style.left = x + 'px';
+          }
+        });
+      });
+    });
+
+    // Animate chart bars on page load
+    window.addEventListener('load', function() {
+      const bars = document.querySelectorAll('.chart-bar');
+      bars.forEach((bar, index) => {
+        const width = bar.style.width;
+        bar.style.width = '0%';
+        setTimeout(() => {
+          bar.style.width = width;
+        }, 100 + (index * 100));
+      });
+    });
+  </script>
 
 </body>
 </html>
